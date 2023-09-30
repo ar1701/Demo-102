@@ -1,2 +1,2 @@
 # College
-Cochin University of Science and Technology
+Cochin University of Science and Technology.
