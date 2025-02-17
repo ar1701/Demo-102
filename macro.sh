@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Global variable to store MongoDB Atlas connection string
-atlas_connection=""
+atlas_connection="mongodb+srv://whitejacker0:dde4aSX2j7hdBk7j@cluster0.8yo94fu.mongodb.net/Hack%40GenAI?retryWrites=true&w=majority&appName=Cluster0"
 
 # Function to initialize MongoDB Atlas connection
 initialize_mongodb_connection() {
@@ -16,14 +16,14 @@ initialize_mongodb_connection() {
 list_mongodb_databases() {
   initialize_mongodb_connection
   echo "Fetching list of databases..."
-  mongo "$atlas_connection" --eval "db.adminCommand('listDatabases')"
+  mongosh "$atlas_connection" --eval "db.adminCommand('listDatabases')"
 }
 
 # Function for MongoDB Operations (with MongoDB Atlas)
 mongodb_operations() {
   initialize_mongodb_connection
   echo "Fetching list of databases..."
-  db_list=$(mongo "$atlas_connection" --eval "db.adminCommand('listDatabases')" --quiet | grep 'name' | awk -F ': ' '{print $2}' | tr -d '",')
+  db_list=$(mongosh "$atlas_connection" --eval "db.adminCommand('listDatabases')" --quiet | grep 'name' | awk -F ': ' '{print $2}' | tr -d '",')
 
   echo "Available databases:"
   echo "$db_list"
@@ -43,34 +43,34 @@ mongodb_operations() {
     1) 
       read -p "Enter collection name: " collection_name
       read -p "Enter MongoDB insert query (JSON format): " insert_query
-      mongo "$atlas_connection/$db_name" --eval "db.$collection_name.insert($insert_query)"
+      mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.insert($insert_query)"
       ;;
     2) 
       read -p "Enter collection name: " collection_name
       read -p "Enter MongoDB find query (JSON format): " find_query
-      mongo "$atlas_connection/$db_name" --eval "db.$collection_name.find($find_query)"
+      mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.find($find_query)"
       ;;
     3) 
       read -p "Enter collection name: " collection_name
       read -p "Enter MongoDB update query (JSON format): " update_query
-      mongo "$atlas_connection/$db_name" --eval "db.$collection_name.update($update_query)"
+      mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.update($update_query)"
       ;;
     4) 
       read -p "Enter collection name: " collection_name
       read -p "Enter MongoDB delete query (JSON format): " delete_query
-      mongo "$atlas_connection/$db_name" --eval "db.$collection_name.remove($delete_query)"
+      mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.remove($delete_query)"
       ;;
     5) 
       read -p "Enter collection name to drop: " collection_name
-      mongo "$atlas_connection/$db_name" --eval "db.$collection_name.drop()"
+      mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.drop()"
       ;;
     6) 
       read -p "Enter new collection name: " new_collection
-      mongo "$atlas_connection/$db_name" --eval "db.createCollection('$new_collection')"
+      mongosh "$atlas_connection/$db_name" --eval "db.createCollection('$new_collection')"
       ;;
     7)
       echo "Fetching collections for database: $db_name"
-      mongo "$atlas_connection/$db_name" --eval "db.getCollectionNames()"
+      mongosh "$atlas_connection/$db_name" --eval "db.getCollectionNames()"
       ;;
     *) 
       echo "Invalid selection!"
