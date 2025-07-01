@@ -37,7 +37,7 @@ mongodb_operations() {
   echo "5. Drop Collection"
   echo "6. Create Collection"
   echo "7. Show Collections in Selected Database"
-  read -p "Select a MongoDB operation: " mongo_choice
+  read -p "Select a MongoDB operations: " mongo_choice
 
   case $mongo_choice in
     1) 
