@@ -47,7 +47,7 @@ mongodb_operations() {
       ;;
     2) 
       read -p "Enter collection name: " collection_name
-      read -p "Enter MongoDB find query (JSON format): " find_query
+      read -p "Enter MongoDB and find query (JSON format): " find_query
       mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.find($find_query)"
       ;;
     3) 
@@ -57,7 +57,7 @@ mongodb_operations() {
       ;;
     4) 
       read -p "Enter collection name: " collection_name
-      read -p "Enter MongoDB delete query (JSON format): " delete_query
+      read -p "Enter MongoDB and delete query (JSON format): " delete_query
       mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.remove($delete_query)"
       ;;
     5) 
