@@ -53,7 +53,7 @@ mongodb_operations() {
     3) 
       read -p "Enter collection name: " collection_name
       read -p "Enter MongoDB update query (JSON format): " update_query
-      mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.update($update_query)"
+      mongosh "$atlas_connection/$db_name" --eval "db.$collection_name.update($update_query)"   //using mongosh insted of cloud
       ;;
     4) 
       read -p "Enter collection name: " collection_name
@@ -81,7 +81,7 @@ mongodb_operations() {
 # Function for Git Operations
 git_operations() {
   echo "Git Operations:"
-  echo "1. Clone Repository"
+  echo "1. Clone a Repository"
   echo "2. Pull Repository"
   echo "3. Show Git Status"
   echo "4. Add Files"
