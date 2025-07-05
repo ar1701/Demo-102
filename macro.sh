@@ -73,7 +73,7 @@ mongodb_operations() {
       mongosh "$atlas_connection/$db_name" --eval "db.getCollectionNames()"
       ;;
     *) 
-      echo "Invalid selection!"
+      echo "Invalid selection! Please choose correct option"
       ;;
   esac
 }
